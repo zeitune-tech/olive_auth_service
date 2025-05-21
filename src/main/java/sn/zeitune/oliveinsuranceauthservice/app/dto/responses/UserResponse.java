@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceauthservice.dto.responses;
+package sn.zeitune.oliveinsuranceauthservice.app.dto.responses;
 
 import lombok.Builder;
 
@@ -7,9 +7,9 @@ import java.util.UUID;
 
 @Builder
 public record UserResponse(
-        UUID uuid,
-        String firstName,
-        String lastName,
+        UUID id,
+        String firstname,
+        String lastname,
         String email,
         String role,
         Set<ProfileResponse> profiles,

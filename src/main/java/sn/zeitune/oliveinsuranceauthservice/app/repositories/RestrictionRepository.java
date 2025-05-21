@@ -1,8 +1,8 @@
-package sn.zeitune.oliveinsuranceauthservice.repositories;
+package sn.zeitune.oliveinsuranceauthservice.app.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import sn.zeitune.oliveinsuranceauthservice.entities.Restriction;
+import sn.zeitune.oliveinsuranceauthservice.app.entities.Restriction;
 import java.util.Optional;
 import java.util.UUID;
 

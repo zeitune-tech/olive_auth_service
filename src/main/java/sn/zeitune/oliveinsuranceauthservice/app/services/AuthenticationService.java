@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceauthservice.app.services.impl;
+package sn.zeitune.oliveinsuranceauthservice.app.services;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +39,10 @@ public class AuthenticationService {
         return new AuthenticationResponse(accessToken, refreshToken);
     }
 
-    public AuthenticationResponse refreshToken(String refreshToken, UserRole userType) throws Exception {
+    public AuthenticationResponse refreshToken(String refreshToken) throws Exception {
+
+        // Extract user type from the token
+        UserRole userType = jwtService.extractUserRoleWithoutValidation(refreshToken);
         final String userEmail = jwtService.extractUsername(refreshToken, userType);
         if (userEmail != null) {
             var user = userRepository.findByEmail(userEmail)

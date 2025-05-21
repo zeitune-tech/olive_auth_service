@@ -1,33 +1,44 @@
-package sn.zeitune.oliveinsuranceauthservice.mappers;
+package sn.zeitune.oliveinsuranceauthservice.app.mappers;
 
-import sn.zeitune.oliveinsuranceauthservice.dto.requests.EmployeeRequest;
-import sn.zeitune.oliveinsuranceauthservice.dto.responses.EmployeeResponse;
-import sn.zeitune.oliveinsuranceauthservice.entities.Employee;
-import sn.zeitune.oliveinsuranceauthservice.entities.Profile;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeRequest;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.InterServiceUserRequest;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.EmployeeResponse;
+import sn.zeitune.oliveinsuranceauthservice.app.entities.Employee;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.UserRole;
 
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class EmployeeMapper {
 
-    public static Employee map(EmployeeRequest request) {
+    public static Employee map(EmployeeRequest request, Employee employee) {
         if (request == null) {
-            return null;
+            return employee;
         }
-        Employee employee = new Employee();
-        employee.setFirstname(request.firstName());
-        employee.setLastname(request.lastName());
+
+        if (employee == null) {
+            employee = new Employee();
+        }
+
+        employee.setFirstname(request.firstname());
+        employee.setLastname(request.lastname());
         employee.setEmail(request.email());
-        employee.setPassword(request.password());
+        employee.setRole(UserRole.USER);
+        employee.setAccessLevel(request.accessLevel());
         employee.setManagementEntity(request.managementEntity());
-        if (request.profileIds() != null) {
-            Set<Profile> profiles = request.profileIds().stream().map(id -> {
-                Profile profile = new Profile();
-                profile.setId(id);
-                return profile;
-            }).collect(Collectors.toSet());
-            employee.setProfiles(profiles);
-        }
+
+        return employee;
+    }
+
+    public static Employee map(InterServiceUserRequest request) {
+        Employee employee = new Employee();
+
+        employee.setFirstname("ADMIN");
+        employee.setLastname(request.name());
+        employee.setEmail(request.email());
+        employee.setRole(UserRole.USER);
+        employee.setAccessLevel(request.accessLevel());
+        employee.setManagementEntity(request.managementEntity());
+
         return employee;
     }
 
@@ -35,16 +46,18 @@ public class EmployeeMapper {
         if (employee == null) {
             return null;
         }
+
         return EmployeeResponse.builder()
-                .id(employee.getId())
-                .uuid(employee.getUuid())
+                .id(employee.getUuid())
                 .firstName(employee.getFirstname())
                 .lastName(employee.getLastname())
                 .email(employee.getEmail())
-                .profiles(employee.getProfiles() != null ?
-                        employee.getProfiles().stream().map(ProfileMapper::map).collect(Collectors.toSet())
-                        : null)
                 .managementEntity(employee.getManagementEntity())
+                .profiles(
+                        employee.getProfiles() != null ?
+                        employee.getProfiles().stream().map(ProfileMapper::map).collect(Collectors.toSet())
+                                : null
+                )
                 .build();
     }
 }

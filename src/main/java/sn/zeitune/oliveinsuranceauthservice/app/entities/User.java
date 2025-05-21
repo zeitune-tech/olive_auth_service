@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceauthservice.entities;
+package sn.zeitune.oliveinsuranceauthservice.app.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import sn.zeitune.oliveinsuranceauthservice.enums.UserRole;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.UserRole;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -50,13 +50,13 @@ public abstract class User implements UserDetails {
     @Column(unique = true)
     private String email;
 
-    @Column(name = "profil")
+    @Column(name = "role")
     private UserRole role;
-    
+
     @JsonIgnore
     @Column(name = "mot_de_passe")
     private String password;
-    
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "utilisateurs_profiles",
@@ -65,10 +65,14 @@ public abstract class User implements UserDetails {
     )
     private Set<Profile> profiles = new HashSet<>();
 
-    private boolean enabled;
-    private boolean accountNonExpired;
-    private boolean accountNonLocked;
-    private boolean credentialsNonExpired;
+    @Builder.Default
+    private boolean enabled = true;
+    @Builder.Default
+    private boolean accountNonExpired = true;
+    @Builder.Default
+    private boolean accountNonLocked = true;
+    @Builder.Default
+    private boolean credentialsNonExpired = true;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

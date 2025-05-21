@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceauthservice.entities;
+package sn.zeitune.oliveinsuranceauthservice.app.entities;
 
 public class RefreshToken {
 }

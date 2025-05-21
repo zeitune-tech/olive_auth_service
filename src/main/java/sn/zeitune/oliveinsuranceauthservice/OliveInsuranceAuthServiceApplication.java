@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class OliveInsuranceAuthServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(OliveInsuranceAuthServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OliveInsuranceAuthServiceApplication.class, args);
+    }
 
 }

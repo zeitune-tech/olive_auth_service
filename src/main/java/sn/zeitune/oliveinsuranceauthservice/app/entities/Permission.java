@@ -1,9 +1,10 @@
-package sn.zeitune.oliveinsuranceauthservice.entities;
+package sn.zeitune.oliveinsuranceauthservice.app.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import sn.zeitune.oliveinsuranceauthservice.enums.ManagementEntityType;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.*;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.Module;
 
 import java.util.UUID;
 
@@ -31,6 +32,8 @@ public class Permission implements GrantedAuthority {
     private String name;
     private String description;
     private ManagementEntityType type;
+    private ManagementEntityType level;
+    private Module module;
 
     @Override
     public String getAuthority() {

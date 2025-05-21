@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceauthservice.controllers;
+package sn.zeitune.oliveinsuranceauthservice.app.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

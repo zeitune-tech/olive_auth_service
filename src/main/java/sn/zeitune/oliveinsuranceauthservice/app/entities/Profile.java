@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceauthservice.entities;
+package sn.zeitune.oliveinsuranceauthservice.app.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import sn.zeitune.oliveinsuranceauthservice.enums.ManagementEntityType;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.ManagementEntityType;
 
 import java.util.*;
 

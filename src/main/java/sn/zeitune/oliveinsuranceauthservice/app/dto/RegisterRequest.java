@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceauthservice.dto;
+package sn.zeitune.oliveinsuranceauthservice.app.dto;
 
 
 public record RegisterRequest(

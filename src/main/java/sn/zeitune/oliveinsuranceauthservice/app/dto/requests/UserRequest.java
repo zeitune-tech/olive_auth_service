@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceauthservice.dto.requests;
+package sn.zeitune.oliveinsuranceauthservice.app.dto.requests;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

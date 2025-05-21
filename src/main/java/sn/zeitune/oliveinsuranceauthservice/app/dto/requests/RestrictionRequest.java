@@ -1,8 +1,8 @@
-package sn.zeitune.oliveinsuranceauthservice.dto.requests;
+package sn.zeitune.oliveinsuranceauthservice.app.dto.requests;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
-import sn.zeitune.oliveinsuranceauthservice.enums.RestrictionType;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.RestrictionType;
 
 import java.util.UUID;
 

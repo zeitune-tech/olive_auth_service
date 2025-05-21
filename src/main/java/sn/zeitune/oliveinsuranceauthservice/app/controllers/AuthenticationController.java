@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceauthservice.controllers;
+package sn.zeitune.oliveinsuranceauthservice.app.controllers;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sn.zeitune.oliveinsuranceauthservice.dto.AuthenticationRequest;
-import sn.zeitune.oliveinsuranceauthservice.dto.AuthenticationResponse;
-import sn.zeitune.oliveinsuranceauthservice.enums.UserRole;
-import sn.zeitune.oliveinsuranceauthservice.services.impl.AuthenticationService;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.AuthenticationRequest;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.AuthenticationResponse;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.UserRole;
+import sn.zeitune.oliveinsuranceauthservice.app.services.AuthenticationService;
 
 @RestController
 @RequestMapping("/auth")
@@ -43,9 +43,6 @@ public class AuthenticationController {
         }
         final String refreshToken = authHeader.substring(7);
 
-        UserRole userType = request.getHeader("X-User-Type") != null ?
-                UserRole.valueOf(request.getHeader("X-User-Type")) : null;
-
-        return ResponseEntity.ok(authService.refreshToken(refreshToken, userType));
+        return ResponseEntity.ok(authService.refreshToken(refreshToken));
     }
 }

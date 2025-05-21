@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceback.config;
+package sn.zeitune.oliveinsuranceauthservice.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

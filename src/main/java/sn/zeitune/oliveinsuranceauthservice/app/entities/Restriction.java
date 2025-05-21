@@ -1,11 +1,10 @@
-package sn.zeitune.oliveinsuranceauthservice.entities;
+package sn.zeitune.oliveinsuranceauthservice.app.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
-import sn.zeitune.oliveinsuranceauthservice.enums.RestrictionType;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.RestrictionType;
 
 import java.util.UUID;
 

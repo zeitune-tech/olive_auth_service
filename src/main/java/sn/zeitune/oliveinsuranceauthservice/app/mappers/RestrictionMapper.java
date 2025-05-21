@@ -1,27 +1,24 @@
-package sn.zeitune.oliveinsuranceauthservice.mappers;
+package sn.zeitune.oliveinsuranceauthservice.app.mappers;
 
-import sn.zeitune.oliveinsuranceauthservice.dto.requests.RestrictionRequest;
-import sn.zeitune.oliveinsuranceauthservice.dto.responses.RestrictionResponse;
-import sn.zeitune.oliveinsuranceauthservice.entities.Restriction;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.RestrictionRequest;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.RestrictionResponse;
+import sn.zeitune.oliveinsuranceauthservice.app.entities.Restriction;
 
 public class RestrictionMapper {
 
-    public static Restriction map(RestrictionRequest request) {
-        if (request == null) {
-            return null;
-        }
-        Restriction restriction = new Restriction();
+    public static Restriction map(RestrictionRequest request, Restriction restriction) {
+        if (request == null) return restriction;
+        if (restriction == null) restriction = new Restriction();
+
         restriction.setRestrictionType(request.restrictionType());
         restriction.setManagementEntity(request.managementEntity());
+
         return restriction;
     }
 
     public static RestrictionResponse map(Restriction restriction) {
-        if (restriction == null) {
-            return null;
-        }
         return RestrictionResponse.builder()
-                .uuid(restriction.getUuid())
+                .id(restriction.getUuid())
                 .restrictionType(restriction.getRestrictionType())
                 .managementEntity(restriction.getManagementEntity())
                 .build();

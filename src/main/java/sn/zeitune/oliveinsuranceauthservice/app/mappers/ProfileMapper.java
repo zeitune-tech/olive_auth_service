@@ -1,23 +1,23 @@
-package sn.zeitune.oliveinsuranceauthservice.mappers;
+package sn.zeitune.oliveinsuranceauthservice.app.mappers;
 
-import sn.zeitune.oliveinsuranceauthservice.dto.requests.ProfileRequest;
-import sn.zeitune.oliveinsuranceauthservice.dto.responses.ProfileResponse;
-import sn.zeitune.oliveinsuranceauthservice.entities.Profile;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.ProfileRequest;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.ProfileResponse;
+import sn.zeitune.oliveinsuranceauthservice.app.entities.Profile;
 
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ProfileMapper {
 
-    public static Profile map(ProfileRequest request) {
+    public static Profile map(ProfileRequest request, Profile profile) {
         if (request == null) {
-            return null;
+            return profile;
         }
-        Profile profile = new Profile();
+        if (profile == null) {
+            profile = new Profile();
+        }
         profile.setName(request.name());
         profile.setDescription(request.description());
         profile.setLevel(request.level());
-        profile.setManagementEntity(request.managementEntity());
         return profile;
     }
 
@@ -26,8 +26,7 @@ public class ProfileMapper {
             return null;
         }
         return ProfileResponse.builder()
-                .id(profile.getId())
-                .uuid(profile.getUuid())
+                .id(profile.getUuid())
                 .name(profile.getName())
                 .description(profile.getDescription())
                 .level(profile.getLevel())

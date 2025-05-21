@@ -1,4 +1,8 @@
 package sn.zeitune.oliveinsuranceauthservice.app.dto.requests;
 
-public class PasswordUpdateRequest {
+public record PasswordUpdateRequest (
+        String oldPassword,
+        String newPassword,
+        String confirmNewPassword
+) {
 }

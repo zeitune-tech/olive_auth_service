@@ -1,7 +1,7 @@
-package sn.zeitune.oliveinsuranceauthservice.specifications;
+package sn.zeitune.oliveinsuranceauthservice.app.specifications;
 
 import org.springframework.data.jpa.domain.Specification;
-import sn.zeitune.oliveinsuranceauthservice.entities.Permission;
+import sn.zeitune.oliveinsuranceauthservice.app.entities.Permission;
 
 import java.util.UUID;
 

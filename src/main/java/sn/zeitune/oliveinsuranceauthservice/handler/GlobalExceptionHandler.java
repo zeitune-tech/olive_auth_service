@@ -1,4 +1,4 @@
-package sn.zeitune.oliveinsuranceback.handler;
+package sn.zeitune.oliveinsuranceauthservice.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;

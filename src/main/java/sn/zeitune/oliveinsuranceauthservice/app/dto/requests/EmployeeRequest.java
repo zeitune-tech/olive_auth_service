@@ -1,9 +1,10 @@
-package sn.zeitune.oliveinsuranceauthservice.dto.requests;
+package sn.zeitune.oliveinsuranceauthservice.app.dto.requests;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.ManagementEntityType;
 
 import java.util.Set;
 import java.util.UUID;
@@ -11,10 +12,10 @@ import java.util.UUID;
 @Builder
 public record EmployeeRequest(
         @NotBlank(message = "Le prénom ne doit pas être vide")
-        String firstName,
+        String firstname,
 
         @NotBlank(message = "Le nom ne doit pas être vide")
-        String lastName,
+        String lastname,
 
         @NotBlank(message = "L'email ne doit pas être vide")
         @Email(message = "L'email doit être valide")
@@ -24,7 +25,10 @@ public record EmployeeRequest(
         String password,
 
         @NotNull(message = "La liste des identifiants de profils ne doit pas être nulle")
-        Set<Long> profileIds,
+        Set<UUID> profiles,
+
+        @NotNull(message = "Le niveau d'accès ne doit pas être nul")
+        ManagementEntityType accessLevel,
 
         @NotNull(message = "L'entité de gestion ne doit pas être nulle")
         UUID managementEntity

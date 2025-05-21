@@ -1,14 +1,14 @@
-package sn.zeitune.oliveinsuranceauthservice.dto.responses;
+package sn.zeitune.oliveinsuranceauthservice.app.dto.responses;
 
 import lombok.Builder;
-import sn.zeitune.oliveinsuranceauthservice.enums.ManagementEntityType;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.ManagementEntityType;
 
 import java.util.Set;
 import java.util.UUID;
 
 @Builder
 public record ProfileResponse(
-        UUID uuid,
+        UUID id,
         String name,
         String description,
         ManagementEntityType level,
