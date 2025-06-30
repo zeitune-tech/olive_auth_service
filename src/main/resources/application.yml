@@ -7,7 +7,7 @@ spring:
     application:
         name: olive_insurance_auth_service
     datasource:
-        url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/olive_auth}
+        url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5600/olive_auth}
         username: ${SPRING_DATASOURCE_USERNAME:lhacksrt}
         password: ${SPRING_DATASOURCE_PASSWORD:lhacksrt}
 
