@@ -13,7 +13,7 @@ import sn.zeitune.oliveinsuranceauthservice.app.enums.UserRole;
 import sn.zeitune.oliveinsuranceauthservice.app.services.AuthenticationService;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class AuthenticationController {
 

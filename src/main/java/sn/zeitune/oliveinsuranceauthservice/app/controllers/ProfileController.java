@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.ProfileRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.PermissionResponse;
