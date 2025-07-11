@@ -85,7 +85,12 @@ jobs:
 
       - name: Deploy to server
         run: |
-          scp -P ${{ secrets.SERVER_PORT }} *.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/olive_dev/microservices/
+          scp -P ${{ secrets.SERVER_PORT }} *.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/olive_dev/microservices/auth-service/
+
+      - name: Execute deployment script
+        run: |
+          ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+          ~/bin/deploy-service.sh auth-service /var/www/olive_dev/microservices/auth-service"
 
   restart:
     needs: [deploy]
@@ -105,4 +110,4 @@ jobs:
       - name: Restart server
         run: |
           ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-          bash nversion.sh && bash restart.sh"
+          echo 'Restarting auth-service...'"
