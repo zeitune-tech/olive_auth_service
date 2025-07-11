@@ -110,4 +110,4 @@ jobs:
       - name: Restart server
         run: |
           ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-          echo 'Restarting auth-service...'"
+          echo 'Restarting auth-service....'"
