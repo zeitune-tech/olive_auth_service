@@ -10,12 +10,10 @@ spring:
         url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/auth_db-dev}
         username: ${SPRING_DATASOURCE_USERNAME:auth_user}
         password: ${SPRING_DATASOURCE_PASSWORD:eXUe089HHwGptSTc1mH8oA==}
-
     jpa:
         hibernate:
             ddl-auto: update
         show-sql: true
-
     cloud:
         consul:
             host: ${SPRING_CLOUD_CONSUL_HOST:localhost}
@@ -25,7 +23,6 @@ spring:
                 deregister: ${SPRING_CLOUD_CONSUL_DISCOVERY_DEREGISTER:true}
                 health-check-path: ${SPRING_CLOUD_CONSUL_DISCOVERY_HEALTHCHECKPATH:/api/v1/actuator/health}
                 prefer-ip-address: ${SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS:true}
-
     mail:
         host: localhost
         port: 1025
