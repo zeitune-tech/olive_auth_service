@@ -14,11 +14,11 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_USER: testuser
-          POSTGRES_PASSWORD: testpass
-          POSTGRES_DB: testdb
+          POSTGRES_USER: auth_user
+          POSTGRES_PASSWORD: eXUe089HHwGptSTc1mH8oA==
+          POSTGRES_DB: auth_db-dev
         options: >-
-          --health-cmd="pg_isready -U testuser"
+          --health-cmd="pg_isready -U auth_user"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
@@ -36,7 +36,6 @@ jobs:
 
       - name: Set secrets as environment variables
         run: |
-          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> $GITHUB_ENV
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
           echo "JWT_EXPIRATION=${{ secrets.JWT_EXPIRATION }}" >> $GITHUB_ENV
           echo "JWT_REFRESH_EXPIRATION=${{ secrets.JWT_REFRESH_EXPIRATION }}" >> $GITHUB_ENV
@@ -44,9 +43,10 @@ jobs:
 
       - name: Set DB environment variables
         run: |
-          echo "SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/testdb" >> $GITHUB_ENV
-          echo "SPRING_DATASOURCE_USERNAME=testuser" >> $GITHUB_ENV
-          echo "SPRING_DATASOURCE_PASSWORD=testpass" >> $GITHUB_ENV
+          echo "SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/auth_db-dev" >> $GITHUB_ENV
+          echo "SPRING_DATASOURCE_USERNAME=auth_user" >> $GITHUB_ENV
+          echo "SPRING_DATASOURCE_PASSWORD=eXUe089HHwGptSTc1mH8oA==" >> $GITHUB_ENV
+          echo "SPRING_PROFILES_ACTIVE=dev" >> $GITHUB_ENV
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
@@ -85,7 +85,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-          scp -P ${{ secrets.SERVER_PORT }} *.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/olive/ci_cd/
+          scp -P ${{ secrets.SERVER_PORT }} *.jar ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/var/www/olive_dev/microservices/
 
   restart:
     needs: [deploy]
