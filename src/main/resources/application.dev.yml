@@ -40,6 +40,7 @@ management:
         web:
             exposure:
                 include: health,info
+                
 jwt:
 
     service:
@@ -60,7 +61,6 @@ jwt:
 
     refresh:
         expiration: 604800000 # 7 days
-
 
 trusted-services:
     auth-service: classpath:keys/services/auth-public.pem
