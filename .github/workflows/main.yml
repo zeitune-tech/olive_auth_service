@@ -48,8 +48,8 @@ jobs:
           echo "SPRING_DATASOURCE_PASSWORD=eXUe089HHwGptSTc1mH8oA==" >> $GITHUB_ENV
           echo "SPRING_PROFILES_ACTIVE=dev" >> $GITHUB_ENV
 
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+      - name: Build with Maven (dev profile)
+        run: mvn -B package --file pom.xml -Dspring.profiles.active=dev
 
       - name: Show the content of the target directory
         run: ls -l target
