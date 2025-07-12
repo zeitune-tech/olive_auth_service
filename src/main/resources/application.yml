@@ -5,7 +5,7 @@ server:
 
 spring:
     profiles:
-        active: dev
+        default: dev # Profil par défaut si aucun n'est spécifié
         
     application:
         name: olive_insurance_auth_service

@@ -10,10 +10,30 @@ spring:
         url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/auth_db-dev}
         username: ${SPRING_DATASOURCE_USERNAME:auth_user}
         password: ${SPRING_DATASOURCE_PASSWORD:eXUe089HHwGptSTc1mH8oA==}
+        
     jpa:
         hibernate:
             ddl-auto: update
         show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
+                use_sql_comments: true
+        generate-ddl: true
+        
+    # Configuration spécifique au développement
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: true
+            
+    # Logs plus détaillés en développement
+    logging:
+        level:
+            org.hibernate.SQL: DEBUG
+            org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+            org.springframework.security: DEBUG
     cloud:
         consul:
             host: ${SPRING_CLOUD_CONSUL_HOST:localhost}
