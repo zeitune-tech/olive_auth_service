@@ -5,11 +5,11 @@ server:
 
 spring:
     application:
-        name: olive_insurance_auth_service
+        name: dev_olive_insurance_auth_service
     datasource:
-        url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/auth_db-dev}
-        username: ${SPRING_DATASOURCE_USERNAME:auth_user}
-        password: ${SPRING_DATASOURCE_PASSWORD:eXUe089HHwGptSTc1mH8oA==}
+        url: ${SPRING_DATASOURCE_URL:${AUTH_DEV_DB_URL}
+        username: ${SPRING_DATASOURCE_USERNAME:${AUTH_DEV_DB_USER}}
+        password: ${SPRING_DATASOURCE_PASSWORD:${AUTH_DEV_DB_PASSWORD}}
         
     jpa:
         hibernate:
