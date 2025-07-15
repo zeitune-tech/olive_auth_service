@@ -7,10 +7,9 @@ spring:
     application:
         name: dev_olive_insurance_auth_service
     datasource:
-        url: ${SPRING_DATASOURCE_URL:${AUTH_DEV_DB_URL}
-        username: ${SPRING_DATASOURCE_USERNAME:${AUTH_DEV_DB_USER}}
-        password: ${SPRING_DATASOURCE_PASSWORD:${AUTH_DEV_DB_PASSWORD}}
-        
+        url: ${OLIVE_DEV_AUTH_SPRING_DATASOURCE_URL}
+        username: ${OLIVE_DEV_AUTH_SPRING_DATASOURCE_USERNAME}
+        password: ${OLIVE_DEV_AUTH_SPRING_DATASOURCE_PASSWORD}
     jpa:
         hibernate:
             ddl-auto: update
@@ -38,8 +37,8 @@ spring:
             org.springframework.security: DEBUG
     cloud:
         consul:
-            host: ${SPRING_CLOUD_CONSUL_HOST:localhost}
-            port: ${SPRING_CLOUD_CONSUL_PORT:8500}
+            host: ${SPRING_CLOUD_CONSUL_HOST}
+            port: ${SPRING_CLOUD_CONSUL_PORT}
             discovery:
                 register: ${SPRING_CLOUD_CONSUL_DISCOVERY_REGISTER:true}
                 deregister: ${SPRING_CLOUD_CONSUL_DISCOVERY_DEREGISTER:true}
