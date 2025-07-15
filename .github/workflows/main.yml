@@ -79,10 +79,8 @@ jobs:
       - name: Restart service
         run: |
           ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} <<EOF
-            sudo systemctl stop dev.auth.service || true
-            sudo systemctl daemon-reload
-            sudo systemctl start dev.auth.service
+            sudo systemctl start dev.docker.management.service
             sleep 10
-            sudo systemctl status dev.auth.service --no-pager --lines=0
-            sudo journalctl -u dev.auth.service --no-pager -n 15 --since '2 minutes ago'
+            sudo systemctl status dev.docker.management.service  --no-pager --lines=0
+#            sudo journalctl -u dev.docker.management.service --no-pager -n 15 --since '2 minutes ago'
           EOF
