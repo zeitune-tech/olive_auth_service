@@ -5,7 +5,7 @@ server:
 
 spring:
     application:
-        name: dev_olive_insurance_auth_service
+        name: dev-olive-insurance-auth-service
     datasource:
         url: ${OLIVE_DEV_AUTH_SPRING_DATASOURCE_URL}
         username: ${OLIVE_DEV_AUTH_SPRING_DATASOURCE_USERNAME}
