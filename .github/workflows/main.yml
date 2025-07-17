@@ -45,12 +45,12 @@ jobs:
         run: >
           scp -P ${{ secrets.SERVER_PORT }} *.jar ${{ secrets.SERVER_USER }}@${{
           secrets.SERVER_HOST
-          }}:/var/www/olive_dev_docker/microservices/olive_auth_service/
+          }}:/var/www/dev_olive_services/dev_olive_auth_service/
       - name: Run deploy script on server
         run: >
           ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{
           secrets.SERVER_HOST }} "
-            ~/bin/deploy-service.sh auth-service /var/www/olive_dev_docker/microservices/olive_auth_service
+            ~/bin/deploy-service.sh auth-service /var/www/dev_olive_services/dev_olive_auth_service
           "
   restart:
     needs: deploy
