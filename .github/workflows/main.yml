@@ -70,7 +70,7 @@ jobs:
         run: >
           ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{
           secrets.SERVER_HOST }} "
-            sudo systemctl start dev.docker.management.service &&
+            sudo systemctl restart dev.docker.management.service &&
             sleep 10 &&
             sudo systemctl status dev.docker.management.service --no-pager --lines=0
           "
