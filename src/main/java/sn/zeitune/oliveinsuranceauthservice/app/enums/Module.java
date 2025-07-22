@@ -5,4 +5,5 @@ public enum Module {
     SETTINGS,
     AUTHENTICATION,
     ATTESTATIONS,
+    INSUREDS,
 }

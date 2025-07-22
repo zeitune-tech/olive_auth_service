@@ -74,7 +74,10 @@ public class PermissionServiceImpl implements PermissionService {
                 PermissionTemplates.pointOfSaleUserAdministrationPermissions(),
                 PermissionTemplates.pointsOfSaleUserAttestationPermissions(),
                 PermissionTemplates.brokerUserAdministrationPermissions(),
-                PermissionTemplates.brokerUserAttestationPermissions()
+                PermissionTemplates.brokerUserAttestationPermissions(),
+                PermissionTemplates.companyUserInsuredsPermissions(),
+                PermissionTemplates.pointOfSaleUserInsuredsPermissions(),
+                PermissionTemplates.brokerUserInsuredsPermissions()
         ).flatMap(Collection::stream).toList();
 
         allPermissions.forEach(permissionRequest -> {
@@ -97,6 +100,7 @@ public class PermissionServiceImpl implements PermissionService {
                     .description(permissionRequest.description())
                     .type(permissionRequest.type())
                     .level(permissionRequest.level())
+                    .module(permissionRequest.module())
                     .build()
             );
         });

@@ -6,7 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeProfilesRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeRequest;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeUpdate;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.PasswordUpdateRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.EmployeeResponse;
 import sn.zeitune.oliveinsuranceauthservice.app.entities.Employee;
@@ -49,6 +51,28 @@ public class EmployeeController {
             @RequestBody EmployeeRequest request
     ) {
         return ResponseEntity.ok(employeeService.updateEmployee(uuid, request));
+    }
+
+    @PutMapping("/{uuid}/activate")
+    public ResponseEntity<EmployeeResponse> activate(
+            @PathVariable UUID uuid
+    ) {
+        return ResponseEntity.ok(employeeService.activateEmployee(uuid));
+    }
+
+    @PutMapping("/{uuid}/deactivate")
+    public ResponseEntity<EmployeeResponse> deactivate(
+            @PathVariable UUID uuid
+    ) {
+        return ResponseEntity.ok(employeeService.deactivateEmployee(uuid));
+    }
+
+    @PutMapping("/{uuid}/profiles")
+    public ResponseEntity<EmployeeResponse> updateProfiles(
+            @PathVariable UUID uuid,
+            @RequestBody EmployeeProfilesRequest request
+    ) {
+        return ResponseEntity.ok(employeeService.updateProfiles(uuid, request));
     }
 
     @DeleteMapping("/{uuid}")
@@ -115,13 +139,5 @@ public class EmployeeController {
     ) {
         employeeService.updatePassword(uuid, request.newPassword());
         return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/{uuid}/profiles")
-    public ResponseEntity<EmployeeResponse> updateProfiles(
-            @PathVariable UUID uuid,
-            @RequestBody Set<UUID> profileIds
-    ) {
-        return ResponseEntity.ok(employeeService.updateProfiles(uuid, profileIds));
     }
 }

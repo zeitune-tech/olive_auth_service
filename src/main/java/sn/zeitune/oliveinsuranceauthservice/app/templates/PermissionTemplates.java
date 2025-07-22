@@ -13,11 +13,6 @@ public class PermissionTemplates {
                 new PermissionRequest("VIEW_MANAGEMENT_ENTITIES", "permissions.view_own_company_details", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
                 new PermissionRequest("UPDATE_MANAGEMENT_ENTITIES", "permissions.update_own_company_details", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
 
-                new PermissionRequest("VIEW_PRODUCTS", "permissions.view_products", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
-                new PermissionRequest("CREATE_PRODUCTS", "permissions.create_products", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
-                new PermissionRequest("UPDATE_PRODUCTS", "permissions.update_products", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
-                new PermissionRequest("DELETE_PRODUCTS", "permissions.delete_products", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
-                new PermissionRequest("AFFILIATE_PRODUCTS", "permissions.affiliate_products", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
 
                 new PermissionRequest("VIEW_COMPANY_LEVEL_ORGANIZATIONS", "permissions.view_company_level_organization", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
                 new PermissionRequest("CREATE_COMPANY_LEVEL_ORGANIZATIONS", "permissions.create_company_level_organization", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
@@ -46,7 +41,11 @@ public class PermissionTemplates {
                 new PermissionRequest("DELETE_PROFILES", "permissions.delete_profile_company", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
                 new PermissionRequest("CREATE_PROFILES_POINTS_OF_SALE", "permissions.create_profile_point_of_sale", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
                 new PermissionRequest("UPDATE_PROFILES_POINTS_OF_SALE", "permissions.update_profile_point_of_sale", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
-                new PermissionRequest("DELETE_PROFILES_POINTS_OF_SALE", "permissions.delete_profile_point_of_sale", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION)
+                new PermissionRequest("DELETE_PROFILES_POINTS_OF_SALE", "permissions.delete_profile_point_of_sale", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
+
+                new PermissionRequest("CREATE_CONTRIBUTORS", "permissions.create_contributors", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
+                new PermissionRequest("UPDATE_CONTRIBUTORS", "permissions.update_contributors", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
+                new PermissionRequest("DELETE_CONTRIBUTORS", "permissions.delete_contributors", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ADMINISTRATION)
         );
     }
 
@@ -54,11 +53,6 @@ public class PermissionTemplates {
         return List.of(
                 new PermissionRequest("VIEW_MANAGEMENT_ENTITIES", "permissions.view_own_markets", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ADMINISTRATION),
                 new PermissionRequest("UPDATE_MANAGEMENT_ENTITIES", "permissions.update_own_markets", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ADMINISTRATION),
-
-                new PermissionRequest("VIEW_PRODUCTS", "permissions.view_products", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ADMINISTRATION),
-                new PermissionRequest("CREATE_PRODUCTS", "permissions.create_products", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ADMINISTRATION),
-                new PermissionRequest("UPDATE_PRODUCTS", "permissions.update_products", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ADMINISTRATION),
-                new PermissionRequest("DELETE_PRODUCTS", "permissions.delete_products", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ADMINISTRATION),
 
                 new PermissionRequest("VIEW_COMPANIES", "permissions.view_companies", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ADMINISTRATION),
                 new PermissionRequest("VIEW_LINKED_COMPANIES", "permissions.view_linked_companies", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ADMINISTRATION),
@@ -80,8 +74,6 @@ public class PermissionTemplates {
                 new PermissionRequest("VIEW_MANAGEMENT_ENTITIES", "permissions.view_own_points_of_sale", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
                 new PermissionRequest("UPDATE_MANAGEMENT_ENTITIES", "permissions.update_own_points_of_sale", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
 
-                new PermissionRequest("VIEW_PRODUCTS", "permissions.view_products", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
-
                 new PermissionRequest("VIEW_USERS", "permissions.view_users_company", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
                 new PermissionRequest("CREATE_USERS", "permissions.create_users_company", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
                 new PermissionRequest("UPDATE_USERS", "permissions.update_users_company", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
@@ -89,7 +81,11 @@ public class PermissionTemplates {
 
                 new PermissionRequest("CREATE_PROFILES", "permissions.create_profiles_company", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
                 new PermissionRequest("UPDATE_PROFILES", "permissions.update_profiles_company", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
-                new PermissionRequest("DELETE_PROFILES", "permissions.delete_profiles_company", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION)
+                new PermissionRequest("DELETE_PROFILES", "permissions.delete_profiles_company", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
+
+                new PermissionRequest("CREATE_CONTRIBUTORS", "permissions.create_contributors", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
+                new PermissionRequest("UPDATE_CONTRIBUTORS", "permissions.update_contributors", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION),
+                new PermissionRequest("DELETE_CONTRIBUTORS", "permissions.delete_contributors", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ADMINISTRATION)
         );
     }
 
@@ -98,8 +94,6 @@ public class PermissionTemplates {
         return List.of(
                 new PermissionRequest("VIEW_MANAGEMENT_ENTITIES", "permissions.view_own_points_of_sale", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.POINT_OF_SALE, Module.ADMINISTRATION),
                 new PermissionRequest("UPDATE_MANAGEMENT_ENTITIES", "permissions.update_own_points_of_sale", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.POINT_OF_SALE, Module.ADMINISTRATION),
-
-                new PermissionRequest("VIEW_PRODUCTS", "permissions.view_products", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.POINT_OF_SALE, Module.ADMINISTRATION),
 
                 new PermissionRequest("VIEW_USERS", "permissions.view_users_company", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.POINT_OF_SALE, Module.ADMINISTRATION),
                 new PermissionRequest("CREATE_USERS", "permissions.create_users_company", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.POINT_OF_SALE, Module.ADMINISTRATION),
@@ -117,12 +111,47 @@ public class PermissionTemplates {
 
     public static List<PermissionRequest> companyUserSettingsPermissions() {
         return List.of(
+                new PermissionRequest("VIEW_PRODUCTS", "permissions.view_products", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("CREATE_PRODUCTS", "permissions.create_products", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("UPDATE_PRODUCTS", "permissions.update_products", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("DELETE_PRODUCTS", "permissions.delete_products", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("AFFILIATE_PRODUCTS", "permissions.affiliate_products", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+
                 new PermissionRequest("VIEW_COVERAGES", "permissions.view_coverages", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
                 new PermissionRequest("CREATE_COVERAGES", "permissions.create_coverages", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
                 new PermissionRequest("UPDATE_COVERAGES", "permissions.update_coverages", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
                 new PermissionRequest("DELETE_COVERAGES", "permissions.delete_coverages", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
 
                 new PermissionRequest("VIEW_COVERAGES_REFERENCES", "permissions.view_coverages_references", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("CREATE_COVERAGES_REFERENCES", "permissions.create_coverages_references", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("UPDATE_COVERAGES_REFERENCES", "permissions.update_coverages_references", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("DELETE_COVERAGES_REFERENCES", "permissions.delete_coverages_references", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+
+                new PermissionRequest("VIEW_ACCESSORIES", "permissions.view_accessories", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("CREATE_ACCESSORIES", "permissions.create_accessories", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("UPDATE_ACCESSORIES", "permissions.update_accessories", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("DELETE_ACCESSORIES", "permissions.delete_accessories", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+
+                new PermissionRequest("VIEW_COMMISSIONS", "permissions.view_commissions", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("CREATE_COMMISSIONS", "permissions.create_commissions", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("UPDATE_COMMISSIONS", "permissions.update_commissions", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("DELETE_COMMISSIONS", "permissions.delete_commissions", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+
+                new PermissionRequest("VIEW_COMMISSION_CONTRIBUTORS", "permissions.view_commission_contributors", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("CREATE_COMMISSION_CONTRIBUTORS", "permissions.create_commission_contributors", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("UPDATE_COMMISSION_CONTRIBUTORS", "permissions.update_commission_contributors", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("DELETE_COMMISSION_CONTRIBUTORS", "permissions.delete_commission_contributors", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+
+                new PermissionRequest("VIEW_COMMISSION_TAXES", "permissions.view_commission_taxes", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("CREATE_COMMISSION_TAXES", "permissions.create_commission_taxes", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("UPDATE_COMMISSION_TAXES", "permissions.update_commission_taxes", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("DELETE_COMMISSION_TAXES", "permissions.delete_commission_taxes", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+
+                new PermissionRequest("VIEW_TAXES", "permissions.view_taxes", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("CREATE_TAXES", "permissions.create_taxes", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("UPDATE_TAXES", "permissions.update_taxes", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+                new PermissionRequest("DELETE_TAXES", "permissions.delete_taxes", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
+
 
                 new PermissionRequest("CREATE_COVERAGE_DURATIONS", "permissions.create_coverage_durations", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
                 new PermissionRequest("UPDATE_COVERAGE_DURATIONS", "permissions.update_coverage_durations", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.SETTINGS),
@@ -148,10 +177,30 @@ public class PermissionTemplates {
 
     public static List<PermissionRequest> marketUserSettingsPermissions() {
         return List.of(
+                new PermissionRequest("VIEW_PRODUCTS", "permissions.view_products", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("CREATE_PRODUCTS", "permissions.create_products", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("UPDATE_PRODUCTS", "permissions.update_products", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("DELETE_PRODUCTS", "permissions.delete_products", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+
                 new PermissionRequest("VIEW_COVERAGES", "permissions.view_coverages", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
                 new PermissionRequest("CREATE_COVERAGES", "permissions.create_coverages", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
                 new PermissionRequest("UPDATE_COVERAGES", "permissions.update_coverages", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
                 new PermissionRequest("DELETE_COVERAGES", "permissions.delete_coverages", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+
+                new PermissionRequest("VIEW_COVERAGES_REFERENCES", "permissions.view_coverages_references", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("CREATE_COVERAGES_REFERENCES", "permissions.create_coverages_references", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("UPDATE_COVERAGES_REFERENCES", "permissions.update_coverages_references", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("DELETE_COVERAGES_REFERENCES", "permissions.delete_coverages_references", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+
+                new PermissionRequest("VIEW_ACCESSORIES", "permissions.view_accessories", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("CREATE_ACCESSORIES", "permissions.create_accessories", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("UPDATE_ACCESSORIES", "permissions.update_accessories", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("DELETE_ACCESSORIES", "permissions.delete_accessories", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+
+                new PermissionRequest("VIEW_TAXES", "permissions.view_taxes", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("CREATE_TAXES", "permissions.create_taxes", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("UPDATE_TAXES", "permissions.update_taxes", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
+                new PermissionRequest("DELETE_TAXES", "permissions.delete_taxes", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
 
                 new PermissionRequest("CREATE_COVERAGE_DURATIONS", "permissions.create_coverage_durations", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
                 new PermissionRequest("UPDATE_COVERAGE_DURATIONS", "permissions.update_coverage_durations", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.SETTINGS),
@@ -236,5 +285,37 @@ public class PermissionTemplates {
                 new PermissionRequest("VIEW_REVOKED_ATTESTATIONS", "permissions.revoke_attestations", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ATTESTATIONS)
         );
     }
+
+    public static List<PermissionRequest> companyUserInsuredsPermissions() {
+        return List.of(
+                new PermissionRequest("VIEW_INSUREDS", "permissions.view_insureds", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.INSUREDS),
+                new PermissionRequest("CREATE_INSUREDS", "permissions.create_insureds", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.INSUREDS),
+
+                new PermissionRequest("VIEW_VEHICLES", "permissions.view_vehicles", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.INSUREDS),
+                new PermissionRequest("CREATE_VEHICLES", "permissions.create_vehicles", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.INSUREDS)
+        );
+    }
+
+    public static List<PermissionRequest> pointOfSaleUserInsuredsPermissions() {
+        return List.of(
+                new PermissionRequest("VIEW_INSUREDS", "permissions.view_insureds", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.INSUREDS),
+                new PermissionRequest("CREATE_INSUREDS", "permissions.create_insureds", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.INSUREDS),
+
+                new PermissionRequest("VIEW_VEHICLES", "permissions.view_vehicles", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.INSUREDS),
+                new PermissionRequest("CREATE_VEHICLES", "permissions.create_vehicles", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.INSUREDS)
+        );
+    }
+
+    public static List<PermissionRequest> brokerUserInsuredsPermissions() {
+        return List.of(
+                new PermissionRequest("VIEW_INSUREDS", "permissions.view_insureds", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.POINT_OF_SALE, Module.INSUREDS),
+                new PermissionRequest("CREATE_INSUREDS", "permissions.create_insureds", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.POINT_OF_SALE, Module.INSUREDS),
+
+                new PermissionRequest("VIEW_VEHICLES", "permissions.view_vehicles", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.POINT_OF_SALE, Module.INSUREDS),
+                new PermissionRequest("CREATE_VEHICLES", "permissions.create_vehicles", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.POINT_OF_SALE, Module.INSUREDS)
+        );
+    }
+
+
 
 }

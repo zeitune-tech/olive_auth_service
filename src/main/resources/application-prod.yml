@@ -1,0 +1,70 @@
+server:
+    port: ${SERVER_PORT:8010}
+    servlet:
+        context-path: /api/v1/
+
+spring:
+    application:
+        name: olive_insurance_auth_service
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/${AUTH_DB_NAME}
+        username: ${AUTH_DB_USER}
+        password: ${AUTH_DB_PASSWORD}
+
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: false
+
+    cloud:
+        consul:
+            host: ${SPRING_CLOUD_CONSUL_HOST:localhost}
+            port: ${SPRING_CLOUD_CONSUL_PORT:8500}
+            discovery:
+                register: true
+                deregister: true
+                health-check-path: /api/v1/actuator/health
+                prefer-ip-address: true
+
+    mail:
+        host: ${MAIL_HOST:localhost}
+        port: ${MAIL_PORT:1025}
+        username: ${MAIL_USERNAME:}
+        password: ${MAIL_PASSWORD:}
+        properties:
+            mail:
+                smtp:
+                    auth: false
+                    starttls:
+                        enable: false
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info
+
+jwt:
+    service:
+        issuer: olive-insurance
+        private-key: classpath:keys/services/private-jwt.pem
+        public-key: classpath:keys/services/public-jwt.pem
+        expiration: 3600000 # 1 hour
+
+    user:
+        private-key: classpath:keys/jwt/private-user.pem
+        public-key: classpath:keys/jwt/public-user.pem
+        expiration: 36000000 # 10 hours
+
+    admin:
+        private-key: classpath:keys/jwt/private-admin.pem
+        public-key: classpath:keys/jwt/public-admin.pem
+        expiration: 3600000 # 1 hour
+
+    refresh:
+        expiration: 604800000 # 7 days
+
+trusted-services:
+    auth-service: classpath:keys/services/auth-public.pem
+    administration-service: classpath:keys/services/administration-public.pem

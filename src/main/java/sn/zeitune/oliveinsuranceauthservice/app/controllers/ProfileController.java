@@ -9,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.ProfileRequest;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.ProfileUpdate;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.ProfileUpdatePermissionsRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.PermissionResponse;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.ProfileResponse;
 import sn.zeitune.oliveinsuranceauthservice.app.entities.Employee;
@@ -56,9 +58,17 @@ public class ProfileController {
     @PutMapping("/{uuid}")
     public ResponseEntity<ProfileResponse> update(
             @PathVariable UUID uuid,
-            @RequestBody ProfileRequest request
+            @RequestBody ProfileUpdate request
     ) {
         return ResponseEntity.ok(profileService.update(uuid, request));
+    }
+
+    @PutMapping("/{uuid}/permissions")
+    public ResponseEntity<ProfileResponse> updatePermissions(
+            @PathVariable UUID uuid,
+            @RequestBody ProfileUpdatePermissionsRequest request
+            ) {
+        return ResponseEntity.ok(profileService.updatePermissions(uuid, request));
     }
 
 
