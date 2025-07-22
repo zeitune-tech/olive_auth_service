@@ -7,7 +7,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeProfilesRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeRequest;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeUpdate;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.InterServiceUserRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.EmployeeResponse;
 import sn.zeitune.oliveinsuranceauthservice.app.entities.Employee;
@@ -76,19 +78,40 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeResponse updateProfiles(UUID uuid, Set<UUID> profileIds) {
+    public EmployeeResponse updateProfiles(UUID uuid, EmployeeProfilesRequest request) {
         Employee employee = employeeRepository.findByUuid(uuid)
                 .orElseThrow(() -> new NotFoundException("Employé non trouvé avec UUID: " + uuid));
 
-        if (profileIds == null || profileIds.isEmpty()) {
+        if (request.profileIds() == null || request.profileIds().isEmpty()) {
             employee.setProfiles(Collections.emptySet());
         } else {
-            Set<Profile> profiles = new HashSet<>(profileRepository.findAllByUuidIn(profileIds));
+            Set<Profile> profiles = new HashSet<>(profileRepository.findAllByUuidIn(request.profileIds()));
             employee.setProfiles(profiles);
         }
 
         return EmployeeMapper.map(employeeRepository.save(employee));
     }
+
+    @Override
+    public EmployeeResponse activateEmployee(UUID uuid) {
+        return employeeRepository.findByUuid(uuid)
+                .map(employee -> {
+                    employee.setAccountNonLocked(true);
+                    return EmployeeMapper.map(employeeRepository.save(employee));
+                })
+                .orElseThrow(() -> new NotFoundException("Employé non trouvé avec UUID: " + uuid));
+    }
+
+    @Override
+    public EmployeeResponse deactivateEmployee(UUID uuid) {
+        return employeeRepository.findByUuid(uuid)
+                .map(employee -> {
+                    employee.setAccountNonLocked(false);
+                    return EmployeeMapper.map(employeeRepository.save(employee));
+                })
+                .orElseThrow(() -> new NotFoundException("Employé non trouvé avec UUID: " + uuid));
+    }
+
 
     @Override
     public EmployeeResponse createAdminUserForEntity(InterServiceUserRequest employee) {
