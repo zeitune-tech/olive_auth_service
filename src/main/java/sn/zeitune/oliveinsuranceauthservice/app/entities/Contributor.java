@@ -1,7 +1,6 @@
 package sn.zeitune.oliveinsuranceauthservice.app.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +18,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "apporteurs")
 public class Contributor extends User {
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ContributorType contributorType;
 
     private ContributorLevel level;
     UUID managementEntity;

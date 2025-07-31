@@ -2,6 +2,7 @@ package sn.zeitune.oliveinsuranceauthservice.app.mappers;
 
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.ContributorRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.ContributorResponse;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.ContributorTypeResponse;
 import sn.zeitune.oliveinsuranceauthservice.app.entities.Contributor;
 import sn.zeitune.oliveinsuranceauthservice.app.enums.UserRole;
 
@@ -26,7 +27,9 @@ public class ContributorMapper {
                 contributor.getLastname(),
                 contributor.getEmail(),
                 contributor.getLevel(),
-                contributor.getManagementEntity()
+                contributor.getManagementEntity(),
+                ContributorTypeResponse.builder()
+                        .build()
         );
     }
 }
