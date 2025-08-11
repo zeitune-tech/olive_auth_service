@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.ProfileUpdate;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.ProfileUpdatePermissionsRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.ProfileRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.PermissionResponse;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.ProfileResponse;
@@ -59,12 +61,41 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public ProfileResponse update(UUID uuid, ProfileRequest request) {
+    public ProfileResponse update(UUID uuid, ProfileUpdate request) {
         Profile profile = profileRepository.findByUuid(uuid)
                 .orElseThrow(() -> new NotFoundException("Profile not found for UUID: " + uuid));
-        ProfileMapper.map(request, profile);
-        profile.getPermissions().clear();
-        return getProfileResponse(request, profile);
+
+        if (request.name() != null) {
+            if (profileRepository.existsByName(request.name())) {
+                throw new ConflictException("Profile with the same name already exists");
+            }
+            profile.setName(request.name());
+        }
+
+        if (request.description() != null) {
+            profile.setDescription(request.description());
+        }
+
+        return  ProfileMapper.map(profileRepository.save(profile));
+    }
+
+    @Override
+    public ProfileResponse updatePermissions(UUID uuid, ProfileUpdatePermissionsRequest request) {
+
+        Profile profile = profileRepository.findByUuid(uuid)
+                .orElseThrow(() -> new NotFoundException("Profile not found for UUID: " + uuid));
+
+        Set<Permission> permissions = new HashSet<>();
+        if (request.permissions() != null) {
+            for (UUID permissionId : request.permissions()) {
+                Permission permission = permissionRepository.findByUuid(permissionId)
+                        .orElseThrow(() -> new NotFoundException("Permission not found for UUID: " + permissionId));
+                permissions.add(permission);
+            }
+        }
+        profile.setPermissions(permissions);
+        profile = profileRepository.save(profile);
+        return ProfileMapper.map(profile);
     }
 
     @Override

@@ -3,7 +3,9 @@ package sn.zeitune.oliveinsuranceauthservice.app.services;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeProfilesRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeRequest;
+import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeUpdate;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.InterServiceUserRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.EmployeeResponse;
 import sn.zeitune.oliveinsuranceauthservice.app.entities.Employee;
@@ -21,7 +23,10 @@ public interface EmployeeService {
     List<EmployeeResponse> getAllByManagementEntity(UUID managementEntity);
     Page<EmployeeResponse> getAllByManagementEntity(UUID managementEntity, Specification<Employee> spec, Pageable pageable);
     void updatePassword(UUID uuid, String newPassword);
-    EmployeeResponse updateProfiles(UUID uuid, Set<UUID> profileIds);
+    EmployeeResponse updateProfiles(UUID uuid, EmployeeProfilesRequest request);
+
+    EmployeeResponse activateEmployee(UUID uuid);
+    EmployeeResponse deactivateEmployee(UUID uuid);
 
     EmployeeResponse createAdminUserForEntity(InterServiceUserRequest employee);
 }
