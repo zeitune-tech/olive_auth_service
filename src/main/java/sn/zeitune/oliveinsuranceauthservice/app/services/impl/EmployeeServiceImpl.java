@@ -1,12 +1,20 @@
 package sn.zeitune.oliveinsuranceauthservice.app.services.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.ClientResponse;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeProfilesRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeUpdate;
@@ -32,6 +40,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
@@ -39,6 +48,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final ProfileRepository profileRepository;
     private final PermissionRepository permissionRepository;
     private final PasswordEncoder passwordEncoder;
+
+    private final WebClient.Builder webClientBuilder;
+    @Value("${services.olive-insurance-administration-service.base-url}")
+    private String adminBaseUrl;
 
     @Override
     public EmployeeResponse createEmployee(EmployeeRequest request) {
@@ -171,6 +184,56 @@ public class EmployeeServiceImpl implements EmployeeService {
         // 6. Save the employee
         Employee savedEmployee = employeeRepository.save(newEmployee);
         return EmployeeMapper.map(savedEmployee);
+    }
+
+    @Override
+    public Optional<UUID> findManagementEntityByName(String name) {
+        if (name == null || name.isBlank()) {
+            return Optional.empty();
+        }
+        try {
+            String base = adminBaseUrl;
+            if (base != null && !base.startsWith("http")) {
+                base = "http://" + base;
+            }
+            Map<String, Object> responseBody = webClientBuilder
+                    .baseUrl(base)
+                    .build()
+                    .get()
+                    .uri(uriBuilder -> uriBuilder
+                            .path("/interservices/management-entities/search/{name}")
+                            .build(name))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .onStatus(HttpStatusCode::isError, this::handleAdminServiceError)
+                    .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {})
+                    .block();
+
+            if (responseBody == null) {
+                return Optional.empty();
+            }
+            Object idValue = responseBody.get("id");
+            if (idValue == null) {
+                return Optional.empty();
+            }
+            String idStr = String.valueOf(idValue);
+            try {
+                return Optional.of(UUID.fromString(idStr));
+            } catch (IllegalArgumentException e) {
+                log.error("Invalid UUID received from admin-service for management entity '{}': {}", name, idStr);
+                return Optional.empty();
+            }
+        } catch (Exception e) {
+            log.error("Error while calling admin-service to find management entity by name '{}': {}", name, e.getMessage());
+            return Optional.empty();
+        }
+    }
+
+    private Mono<Throwable> handleAdminServiceError(ClientResponse response) {
+        return response.bodyToMono(String.class).flatMap(errorBody -> {
+            log.error("Error response from admin-service: status={} body={}", response.statusCode(), errorBody);
+            return Mono.error(new RuntimeException("Admin service call failed: " + errorBody));
+        });
     }
 
     @Override

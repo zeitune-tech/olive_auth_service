@@ -11,6 +11,7 @@ import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.EmployeeResponse;
 import sn.zeitune.oliveinsuranceauthservice.app.entities.Employee;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,4 +30,5 @@ public interface EmployeeService {
     EmployeeResponse deactivateEmployee(UUID uuid);
 
     EmployeeResponse createAdminUserForEntity(InterServiceUserRequest employee);
+    Optional<UUID> findManagementEntityByName(String name);
 }
