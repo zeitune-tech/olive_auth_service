@@ -17,39 +17,40 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class UserInitializer implements CommandLineRunner {
+//public class UserInitializer implements CommandLineRunner {
+public class UserInitializer  {
 
     private final PermissionService permissionService;
     private final AdminService adminService;
     private final EmployeeService employeeService;
 
-    @Override
-    public void run(String... args) {
-        permissionService.init();
-        adminService.init();
-
-        Optional<UUID> managementEntityOpt = employeeService.findManagementEntityByName("amsa");
-        if (managementEntityOpt.isEmpty()) {
-            log.warn("No management entity found for name 'amsa'. Skipping default employee creation.");
-            return;
-        }
-        UUID managementEntityId = managementEntityOpt.get();
-
-        try {
-            employeeService.createEmployee(
-                    EmployeeRequest.builder()
-                            .firstname("Default")
-                            .lastname("Employee")
-                            .email("amsa2@gmail.com")
-                            .password("P@ssw0rd")
-                            .profiles(Set.of())
-                            .accessLevel(ManagementEntityType.COMPANY)
-                            .managementEntity(managementEntityId)
-                            .build()
-            );
-            log.info("Default employee for 'amsa' ensured/created.");
-        } catch (Exception e) {
-            log.warn("Could not create default employee for 'amsa': {}", e.getMessage());
-        }
-    }
+//    @Override
+//    public void run(String... args) {
+//        permissionService.init();
+//        adminService.init();
+//
+//        Optional<UUID> managementEntityOpt = employeeService.findManagementEntityByName("amsa");
+//        if (managementEntityOpt.isEmpty()) {
+//            log.warn("No management entity found for name 'amsa'. Skipping default employee creation.");
+//            return;
+//        }
+//        UUID managementEntityId = managementEntityOpt.get();
+//
+//        try {
+//            employeeService.createEmployee(
+//                    EmployeeRequest.builder()
+//                            .firstname("Default")
+//                            .lastname("Employee")
+//                            .email("amsa2@gmail.com")
+//                            .password("P@ssw0rd")
+//                            .profiles(Set.of())
+//                            .accessLevel(ManagementEntityType.COMPANY)
+//                            .managementEntity(managementEntityId)
+//                            .build()
+//            );
+//            log.info("Default employee for 'amsa' ensured/created.");
+//        } catch (Exception e) {
+//            log.warn("Could not create default employee for 'amsa': {}", e.getMessage());
+//        }
+//    }
 }
