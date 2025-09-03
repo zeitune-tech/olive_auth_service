@@ -18,11 +18,16 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 //public class UserInitializer implements CommandLineRunner {
-public class UserInitializer  {
+public class UserInitializer implements CommandLineRunner {
 
     private final PermissionService permissionService;
     private final AdminService adminService;
     private final EmployeeService employeeService;
+
+    @Override
+    public void run(String... args) throws Exception {
+        permissionService.init();
+    }
 
 //    @Override
 //    public void run(String... args) {
