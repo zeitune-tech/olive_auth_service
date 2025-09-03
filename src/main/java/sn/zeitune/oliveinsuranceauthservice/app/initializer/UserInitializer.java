@@ -26,7 +26,7 @@ public class UserInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        permissionService.init();
+        // permissionService.init();
     }
 
 //    @Override
