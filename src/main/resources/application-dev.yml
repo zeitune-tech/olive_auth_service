@@ -3,6 +3,10 @@ server:
     servlet:
         context-path: /api/v1/
 
+services:
+    olive-insurance-administration-service:
+        base-url: ${OLIVE_DEV_ADMINISTRATION_SERVICE_URL}
+
 spring:
     application:
         name: dev-olive-insurance-auth-service
