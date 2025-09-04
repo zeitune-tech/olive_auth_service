@@ -3,7 +3,7 @@ name: Build and Deploy Spring Boot App
 on:
   push:
     branches:
-      - recipe
+      - dev
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,7 +26,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/recipe'
+    if: github.ref == 'refs/heads/dev'
     steps:
       - name: Download JAR artifact
         uses: actions/download-artifact@v4
@@ -45,17 +45,17 @@ jobs:
         run: >
           scp -P ${{ secrets.SERVER_PORT }} *.jar ${{ secrets.SERVER_USER }}@${{
           secrets.SERVER_HOST
-          }}:/var/www/recipe_olive_services/recipe_olive_auth_service/
+          }}:/var/www/dev_olive_services/dev_olive_auth_service/
       - name: Run deploy script on server
         run: >
           ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{
           secrets.SERVER_HOST }} "
-            ~/bin/deploy-service.sh auth-service /var/www/recipe_olive_services/recipe_olive_auth_service
+            ~/bin/deploy-service.sh auth-service /var/www/dev_olive_services/dev_olive_auth_service
           "
   restart:
     needs: deploy
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/recipe'
+    if: github.ref == 'refs/heads/dev'
     steps:
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
@@ -70,7 +70,7 @@ jobs:
         run: >
           ssh -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_USER }}@${{
           secrets.SERVER_HOST }} "
-            sudo systemctl restart recipe.docker.management.service &&
+            sudo systemctl restart dev.docker.management.service &&
             sleep 10 &&
-            sudo systemctl status recipe.docker.management.service --no-pager --lines=0
+            sudo systemctl status dev.docker.management.service --no-pager --lines=0
           "
