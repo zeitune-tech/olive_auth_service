@@ -33,29 +33,29 @@ public class UserInitializer implements CommandLineRunner {
    public void run(String... args) {
        permissionService.init();
        adminService.init();
-
-       Optional<UUID> managementEntityOpt = employeeService.findManagementEntityByName("amsa");
-       if (managementEntityOpt.isEmpty()) {
-           log.warn("No management entity found for name 'amsa'. Skipping default employee creation.");
-           return;
-       }
-       UUID managementEntityId = managementEntityOpt.get();
-
-       try {
-           employeeService.createEmployee(
-                   EmployeeRequest.builder()
-                           .firstname("Default")
-                           .lastname("Employee")
-                           .email("amsa2@gmail.com")
-                           .password("P@ssw0rd")
-                           .profiles(Set.of())
-                           .accessLevel(ManagementEntityType.COMPANY)
-                           .managementEntity(managementEntityId)
-                           .build()
-           );
-           log.info("Default employee for 'amsa' ensured/created.");
-       } catch (Exception e) {
-           log.warn("Could not create default employee for 'amsa': {}", e.getMessage());
-       }
+//
+//       Optional<UUID> managementEntityOpt = employeeService.findManagementEntityByName("amsa");
+//       if (managementEntityOpt.isEmpty()) {
+//           log.warn("No management entity found for name 'amsa'. Skipping default employee creation.");
+//           return;
+//       }
+//       UUID managementEntityId = managementEntityOpt.get();
+//
+//       try {
+//           employeeService.createEmployee(
+//                   EmployeeRequest.builder()
+//                           .firstname("Default")
+//                           .lastname("Employee")
+//                           .email("amsa2@gmail.com")
+//                           .password("P@ssw0rd")
+//                           .profiles(Set.of())
+//                           .accessLevel(ManagementEntityType.COMPANY)
+//                           .managementEntity(managementEntityId)
+//                           .build()
+//           );
+//           log.info("Default employee for 'amsa' ensured/created.");
+//       } catch (Exception e) {
+//           log.warn("Could not create default employee for 'amsa': {}", e.getMessage());
+//       }
    }
 }
