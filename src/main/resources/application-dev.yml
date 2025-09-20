@@ -5,15 +5,15 @@ server:
 
 services:
     olive-insurance-administration-service:
-        base-url: ${OLIVE_DEV_ADMINISTRATION_SERVICE_URL}
+        base-url: ${ADMINISTRATION_SERVICE_URL}
 
 spring:
     application:
         name: dev-olive-insurance-auth-service
     datasource:
-        url: ${OLIVE_DEV_AUTH_SPRING_DATASOURCE_URL}
-        username: ${OLIVE_DEV_AUTH_SPRING_DATASOURCE_USERNAME}
-        password: ${OLIVE_DEV_AUTH_SPRING_DATASOURCE_PASSWORD}
+        url: ${SPRING_DATASOURCE_URL}
+        username: ${SPRING_DATASOURCE_USERNAME}
+        password: ${SPRING_DATASOURCE_PASSWORD}
     jpa:
         hibernate:
             ddl-auto: create
@@ -49,8 +49,8 @@ spring:
                 health-check-path: ${SPRING_CLOUD_CONSUL_DISCOVERY_HEALTHCHECKPATH:/api/v1/actuator/health}
                 prefer-ip-address: ${SPRING_CLOUD_CONSUL_DISCOVERY_PREFER_IP_ADDRESS:true}
     mail:
-        host: localhost
-        port: 1025
+        host: ${SPRING_MAIL_HOST:localhost}
+        port: ${SPRING_MAIL_PORT:1025}
         username: ""
         password: ""
         properties:
