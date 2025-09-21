@@ -7,6 +7,12 @@ services:
     olive-insurance-administration-service:
         base-url: ${ADMINISTRATION_SERVICE_URL}
 
+olive:
+    company:
+        amsa: "1fd4143f-1a73-4b43-963a-b1dbc10cb4bb"
+    marketLevel:
+        pool-tpv: "62e72106-cfb6-4dc0-9e09-a9fad2aa68b2"
+
 spring:
     application:
         name: recipe-olive-insurance-auth-service
@@ -16,7 +22,7 @@ spring:
         password: ${SPRING_DATASOURCE_PASSWORD}
     jpa:
         hibernate:
-            ddl-auto: update
+            ddl-auto: create
         show-sql: false
         properties:
             hibernate:
