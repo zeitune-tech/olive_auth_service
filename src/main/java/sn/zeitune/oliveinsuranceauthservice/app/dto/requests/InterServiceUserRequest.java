@@ -3,10 +3,12 @@ package sn.zeitune.oliveinsuranceauthservice.app.dto.requests;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import sn.zeitune.oliveinsuranceauthservice.app.enums.ManagementEntityType;
 
 import java.util.UUID;
 
+@Builder
 public record InterServiceUserRequest(
         @Email(message = "Invalid email format")
         @NotNull(message = "Email cannot be null")
