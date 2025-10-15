@@ -22,6 +22,7 @@ services:
 olive:
   company:
     amsa: "1fd4143f-1a73-4b43-963a-b1dbc10cb4bb"
+    sonam: "d4818c63-e1dc-44d4-b930-fb09c4f4a0fa"
   marketLevel:
     pool-tpv: "62e72106-cfb6-4dc0-9e09-a9fad2aa68b2"
 
@@ -51,7 +52,7 @@ spring:
 
   mail:
     host: localhost
-    port: 1025
+    port: 1026
     username: ""
     password: ""
     properties:

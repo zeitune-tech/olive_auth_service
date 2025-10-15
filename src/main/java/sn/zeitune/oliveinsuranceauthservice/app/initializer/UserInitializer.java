@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.EmployeeRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.InterServiceUserRequest;
 import sn.zeitune.oliveinsuranceauthservice.app.dto.responses.EmployeeResponse;
 import sn.zeitune.oliveinsuranceauthservice.app.enums.ManagementEntityType;
@@ -13,8 +12,6 @@ import sn.zeitune.oliveinsuranceauthservice.app.services.AdminService;
 import sn.zeitune.oliveinsuranceauthservice.app.services.EmployeeService;
 import sn.zeitune.oliveinsuranceauthservice.app.services.PermissionService;
 
-import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 @Component
@@ -29,6 +26,8 @@ public class UserInitializer implements CommandLineRunner {
     UUID poolTPVUuid;
     @Value("${olive.company.amsa}")
     UUID amsaUuid;
+    @Value("${olive.company.sonam}")
+    UUID sonamUuid;
 
 
     @Override
@@ -38,7 +37,7 @@ public class UserInitializer implements CommandLineRunner {
         if (!isAlreadyInit()) {
             log.info("------- User Initialization started -------");
             createPoolTPVAdminUser();
-            createAmsaAdminUser();
+            createAdminUsers();
             log.info("------- User Initialization completed -------");
         } else {
             log.info("------- User Initialization skipped -------");
@@ -60,7 +59,7 @@ public class UserInitializer implements CommandLineRunner {
         }
     }
 
-    private void createAmsaAdminUser() {
+    private void createAdminUsers() {
         try {
             InterServiceUserRequest amsa = InterServiceUserRequest.builder()
                     .email("amsa@gmail.com")
@@ -72,6 +71,20 @@ public class UserInitializer implements CommandLineRunner {
             EmployeeResponse amsaEmployeeResponse = employeeService.createAdminUserForEntity(amsa);
         } catch (Exception e) {
             log.error("Error during super admin amsa initialization", e);
+        }
+
+
+        try {
+            InterServiceUserRequest sonam = InterServiceUserRequest.builder()
+                    .email("sonam@gmail.com")
+                    .name("SONAM Assurances")
+                    .managementEntity(sonamUuid)
+                    .accessLevel(ManagementEntityType.COMPANY)
+                    .type(ManagementEntityType.COMPANY)
+                    .build();
+            EmployeeResponse sonamEmployeeResponse = employeeService.createAdminUserForEntity(sonam);
+        } catch (Exception e) {
+            log.error("Error during super admin sonam initialization", e);
         }
     }
 
