@@ -65,18 +65,21 @@ public class PermissionServiceImpl implements PermissionService {
 
     public void init() {
         List<PermissionRequest> allPermissions = Stream.of(
-                PermissionTemplates.companyUserAdministrationPermissions(),
-                PermissionTemplates.companyUserSettingsPermissions(),
-                PermissionTemplates.companyUserAttestationPermissions(),
                 PermissionTemplates.marketUserAdministrationPermissions(),
                 PermissionTemplates.marketUserSettingsPermissions(),
                 PermissionTemplates.marketUserAttestationPermissions(),
+
+                PermissionTemplates.companyUserAdministrationPermissions(),
+                PermissionTemplates.companyUserSettingsPermissions(),
+                PermissionTemplates.companyUserAttestationPermissions(),
+                PermissionTemplates.companyUserInsuredsPermissions(),
+
                 PermissionTemplates.pointOfSaleUserAdministrationPermissions(),
                 PermissionTemplates.pointsOfSaleUserAttestationPermissions(),
+                PermissionTemplates.pointOfSaleUserInsuredsPermissions(),
+
                 PermissionTemplates.brokerUserAdministrationPermissions(),
                 PermissionTemplates.brokerUserAttestationPermissions(),
-                PermissionTemplates.companyUserInsuredsPermissions(),
-                PermissionTemplates.pointOfSaleUserInsuredsPermissions(),
                 PermissionTemplates.brokerUserInsuredsPermissions()
         ).flatMap(Collection::stream).toList();
 

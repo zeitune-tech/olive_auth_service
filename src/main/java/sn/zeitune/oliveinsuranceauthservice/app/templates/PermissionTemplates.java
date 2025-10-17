@@ -1,6 +1,8 @@
 package sn.zeitune.oliveinsuranceauthservice.app.templates;
 
 import sn.zeitune.oliveinsuranceauthservice.app.dto.requests.PermissionRequest;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.permissions.attestation.CompanyAttestationModulePermissions;
+import sn.zeitune.oliveinsuranceauthservice.app.enums.permissions.attestation.ManagementEntityAttestationModulePermissions;
 import sn.zeitune.oliveinsuranceauthservice.app.enums.ManagementEntityType;
 import sn.zeitune.oliveinsuranceauthservice.app.enums.Module;
 
@@ -227,6 +229,7 @@ public class PermissionTemplates {
 
     public static List<PermissionRequest> companyUserAttestationPermissions() {
         return List.of(
+                // Legacy permission kept for backward compatibility
                 new PermissionRequest("VIEW_ATTESTATIONS", "permissions.view_attestations", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ATTESTATIONS),
 
                 new PermissionRequest("VIEW_ATTESTATIONS_DEMANDS", "permissions.view_attestations_demands", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ATTESTATIONS),
@@ -237,7 +240,12 @@ public class PermissionTemplates {
                 new PermissionRequest("DELIVER_ATTESTATIONS_TO_POINTS_OF_SALE", "permissions.deliver_attestations", ManagementEntityType.COMPANY, ManagementEntityType.COMPANY, Module.ATTESTATIONS),
                 new PermissionRequest("REVOKE_ATTESTATIONS_TO_POINT_OF_SALE", "permissions.revoke_attestations", ManagementEntityType.POINT_OF_SALE, ManagementEntityType.COMPANY, Module.ATTESTATIONS),
 
-                new PermissionRequest("VIEW_REVOKED_ATTESTATIONS", "permissions.revoke_attestations", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ATTESTATIONS)
+                new PermissionRequest("VIEW_REVOKED_ATTESTATIONS", "permissions.revoke_attestations", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ATTESTATIONS),
+
+                // New permission model should use the following instead
+                CompanyAttestationModulePermissions.VIEW_ATTESTATION_REFERENCES.toPermissionRequest(),
+                CompanyAttestationModulePermissions.VIEW_ATTESTATION_BATCHES_AND_STOCK.toPermissionRequest(),
+                CompanyAttestationModulePermissions.VIEW_ATTESTATION_STOCK.toPermissionRequest()
         );
     }
 
@@ -272,6 +280,7 @@ public class PermissionTemplates {
 
     public static List<PermissionRequest> marketUserAttestationPermissions() {
         return List.of(
+                // Legacy permission kept for backward compatibility
                 new PermissionRequest("VIEW_ATTESTATIONS", "permissions.view_attestations", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ATTESTATIONS),
 
                 new PermissionRequest("VIEW_ATTESTATIONS_DEMANDS", "permissions.view_attestations_demands", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ATTESTATIONS),
@@ -282,7 +291,16 @@ public class PermissionTemplates {
                 new PermissionRequest("DELIVER_ATTESTATIONS_TO_COMPANY", "permissions.distribute_attestations", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ATTESTATIONS),
                 new PermissionRequest("REVOKE_ATTESTATIONS_TO_COMPANY", "permissions.revoke_attestations", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ATTESTATIONS),
 
-                new PermissionRequest("VIEW_REVOKED_ATTESTATIONS", "permissions.revoke_attestations", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ATTESTATIONS)
+                new PermissionRequest("VIEW_REVOKED_ATTESTATIONS", "permissions.revoke_attestations", ManagementEntityType.MARKET_LEVEL_ORGANIZATION, ManagementEntityType.MARKET_LEVEL_ORGANIZATION, Module.ATTESTATIONS),
+
+
+                // New permission model should use the following instead
+                ManagementEntityAttestationModulePermissions.CREATE_ATTESTATION_REFERENCE.toPermissionRequest(),
+                ManagementEntityAttestationModulePermissions.VIEW_ATTESTATION_REFERENCES.toPermissionRequest(),
+                ManagementEntityAttestationModulePermissions.VIEW_ATTESTATION_BATCHES_AND_STOCK.toPermissionRequest(),
+                ManagementEntityAttestationModulePermissions.CREATE_ATTESTATION_BATCH.toPermissionRequest(),
+                ManagementEntityAttestationModulePermissions.VIEW_ATTESTATION_BATCHES.toPermissionRequest(),
+                ManagementEntityAttestationModulePermissions.VIEW_ATTESTATION_STOCK.toPermissionRequest()
         );
     }
 
